@@ -76,26 +76,40 @@ let ofertas = [
   },
 ];
 
+function calcularDesconto(precoNormal, precoAtual) {
+  precoNormal = parseFloat(precoNormal);
+  precoAtual = parseFloat(precoAtual);
+
+  if(precoAtual === 0)
+    return "Grátis";
+
+  const porcentagem = 100 - precoAtual / precoNormal * 100;
+  return `-${Math.round(porcentagem)}%`;
+}
+
 window.onload = () => {
   jogosLista.innerHTML = "";
 
   ofertas.map((oferta) => {
     jogosLista.innerHTML += `
       <article class="oferta">
-        <header>
-          <h4>
-            ${oferta.title}
-          </h4>
-        </header>
-
         <figure>
           <img src="${oferta.thumb}" alt="${oferta.title}">
         </figure>
 
-        <section>
-          <small class="preco-normal">$ ${oferta.normalPrice}</small>
-          <h5 class="preco-oferta">$ ${oferta.salePrice}</h5>
-        </section> 
+        <section class="conteiner-jogo">
+          <h3>${oferta.title}</h3>
+        
+          <div class="informacao">
+            <button class="botao detalhe">Detalhes</button>
+
+            <div>
+              <small class="preco-normal">$ ${oferta.normalPrice}</small>
+              <h5 class="preco-oferta">$ ${oferta.salePrice}</h5>
+            </div>
+            <button class="botao desconto">${calcularDesconto(oferta.normalPrice, oferta.salePrice)}</button>
+          </div>
+        </section>
       </article>
       `;
   });

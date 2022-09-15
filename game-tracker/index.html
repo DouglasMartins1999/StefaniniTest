@@ -19,6 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="estilo.css" />
+    <link rel="stylesheet" href="mobile.css" />
     <script>
       if (
         "serviceWorker" in navigator &&
@@ -36,15 +37,49 @@
     </noscript>
   </head>
   <body>
-    <header>
+    <header class="cabecalho-principal">
       <img src="assets/logo-horizontal.svg" alt="Logo Game Tracker" />
     </header>
 
-    <h2>Ofertas</h2>
+    <article class="conteiner-principal">
+      <h1>Ofertas</h1>
 
-    <main>
-      <article id="jogos-lista"></article>
-    </main>
+      <section class="filtros">
+        <div id="campo-busca" class="campo">
+          <img src="assets/pesquisa.svg">
+          <input type="text" placeholder="Procurar">
+        </div>
+
+        <div id="campo-ordenacao">
+          <span>Ordenar por:</span>
+          <div class="campo">
+            <select>
+              <option value="discount">% de desconto</option>
+              <option value="highprice">Maior preço</option>
+              <option value="lowprice">Menor preço</option>
+              <option value="aztitle">Título</option>
+            </select>
+          </div>
+        </div>
+      </section>
+  
+      <main>
+        <article id="jogos-lista"></article>
+      </main>
+
+      <button id="carregar-mais" class="botao">Carregar mais</button>
+    </article>
+
+    <footer class="rodape-principal">
+      <img src="assets/logo-icone.svg">
+      <p>© 2021, Game Tracker Inc. Todos os direitos reservados. Nulla facilisi. Etiam sagittis congue tempor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse eu velit et ante luctus egestas. Aenean sed nisi tellus. Duis non ornare libero. Quisque suscipit maximus nisi, in gravida felis. Cras ornare mauris ac nisi congue, ut condimentum sem tincidunt. Phasellus semper tellus malesuada turpis gravida cursus. Duis nec eleifend nunc, vitae finibus elit. Aliquam eget diam vitae purus suscipit viverra.</p>
+      <ul>
+        <li>Termos de Serviço</li>
+        <li>Política de Privacidade</li>
+        <li>Trabalhe Conosco</li>
+        <li>Contato</li>
+      </ul>
+    </footer>
 
     <script src="script.js"></script>
   </body>
