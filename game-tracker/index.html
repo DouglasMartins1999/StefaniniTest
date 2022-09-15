@@ -47,17 +47,17 @@
       <section class="filtros">
         <div id="campo-busca" class="campo">
           <img src="assets/pesquisa.svg">
-          <input type="text" placeholder="Procurar">
+          <input type="text" placeholder="Procurar" onchange="buscarJogos(event)">
         </div>
 
         <div id="campo-ordenacao">
           <span>Ordenar por:</span>
           <div class="campo">
-            <select>
-              <option value="discount">% de desconto</option>
-              <option value="highprice">Maior preço</option>
-              <option value="lowprice">Menor preço</option>
-              <option value="aztitle">Título</option>
+            <select onchange="ordenarLista(event)">
+              <option value="Savings">% de desconto</option>
+              <option value="Price,1">Maior preço</option>
+              <option value="Price">Menor preço</option>
+              <option value="Title">Título</option>
             </select>
           </div>
         </div>
@@ -67,7 +67,7 @@
         <article id="jogos-lista"></article>
       </main>
 
-      <button id="carregar-mais" class="botao">Carregar mais</button>
+      <button id="carregar-mais" class="botao" onclick="proximaPagina()">Carregar mais</button>
     </article>
 
     <footer class="rodape-principal">
