@@ -5,6 +5,7 @@ import { NossasOfertasComponent } from './pages/nossas-ofertas/nossas-ofertas.co
 
 const routes: Routes = [
   { path: 'cadastroofertas', component: CadastroOfertasComponent },
+  { path: 'cadastroofertas/:id', component: CadastroOfertasComponent },
   { path: 'nossasofertas', component: NossasOfertasComponent }
 ];
 

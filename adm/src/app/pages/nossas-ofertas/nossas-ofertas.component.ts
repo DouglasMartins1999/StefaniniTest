@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class NossasOfertasComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'titulo', 'preco', 'precoDesconto'];
+  displayedColumns: string[] = ['id', 'titulo', 'preco', 'precoDesconto', 'detalhes'];
   dataSource;
 
   constructor() { }

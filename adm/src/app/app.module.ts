@@ -12,6 +12,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { NossasOfertasComponent } from './pages/nossas-ofertas/nossas-ofertas.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
     NossasOfertasComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
