@@ -13,12 +13,19 @@ import { NossasOfertasComponent } from './pages/nossas-ofertas/nossas-ofertas.co
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
+import { MatOptionModule } from '@angular/material/core';
+
+import { MaxValueValidatorDirective, MinValueValidatorDirective, UniqueValidatorDirective } from './pages/cadastro-ofertas/cadastro-ofertas.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroOfertasComponent,
-    NossasOfertasComponent
+    NossasOfertasComponent,
+
+    MinValueValidatorDirective,
+    MaxValueValidatorDirective,
+    UniqueValidatorDirective
   ],
   imports: [
     FormsModule,
@@ -28,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatOptionModule,
     MatGridListModule,
     MatButtonModule,
     MatTableModule

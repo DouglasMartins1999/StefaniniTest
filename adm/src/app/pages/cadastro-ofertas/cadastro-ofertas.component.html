@@ -2,11 +2,16 @@
     <div class="container">
         <h2>{{ isEditing ? 'Edição de Oferta' : 'Cadastro de Ofertas' }}</h2>
         
-        <div class="grid">
+        <form class="grid" name="oferta" (ngSubmit)="f.form.valid && persistirOferta()" #f="ngForm" novalidate>
             <div class="campos">
                 <mat-form-field appearance="outline">
                     <mat-label>ID</mat-label>
-                    <input matInput placeholder="ID do jogo" [(ngModel)]="oferta.id">
+                    <input #id="ngModel" name="id" matInput placeholder="ID do jogo" [(ngModel)]="oferta.id" required [unique]="dataSource" [minValue]="0">
+                    <mat-error *ngIf="id.invalid">
+                        <span *ngIf="id.errors.required">Insira o ID do jogo</span>
+                        <span *ngIf="id.errors.unique">O id não pode ser igual ao de outro jogo</span>
+                        <span *ngIf="id.errors.minValue">O id precisa ser um número</span>
+                    </mat-error>
                 </mat-form-field>
             </div>
 
@@ -14,30 +19,45 @@
             <div class="campos">
                 <mat-form-field appearance="outline">
                     <mat-label>Título</mat-label>
-                    <input matInput placeholder="Título do jogo" [(ngModel)]="oferta.titulo">
+                    <input #titulo="ngModel" name="titulo" matInput placeholder="Título do jogo" [(ngModel)]="oferta.titulo" required>
+                    <mat-error *ngIf="titulo.invalid">
+                        <span *ngIf="titulo.errors.required">Insíra o título do jogo</span>
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <div class="campos">
                 <mat-form-field appearance="outline">
                     <mat-label>Preço</mat-label>
-                    <input matInput placeholder="Preço do jogo" [(ngModel)]="oferta.preco">
+                    <input #preco="ngModel" name="preco" matInput placeholder="Preço do jogo" [(ngModel)]="oferta.preco" required [minValue]="0">
+                    <mat-error *ngIf="preco.invalid">
+                        <span *ngIf="preco.errors.required">Insíra o preço do jogo</span>
+                        <span *ngIf="preco.errors.minValue">O preço não pode ser negativo</span>
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <div class="campos">
                 <mat-form-field appearance="outline">
                     <mat-label>Preço com desconto</mat-label>
-                    <input matInput placeholder="Preço com desconto" [(ngModel)]="oferta.precoDesconto">
+                    <input #precoDesc="ngModel" name="precoDesconto" matInput placeholder="Preço com desconto" [(ngModel)]="oferta.precoDesconto" required [minValue]="0" [maxValue]="preco.value">
+                    <mat-error *ngIf="precoDesc.invalid">
+                        <span *ngIf="precoDesc.errors.required">Insíra o preço com desconto do jogo</span>
+                        <span *ngIf="precoDesc.errors.minValue">O preço com desconto não pode ser negativo</span>
+                        <span *ngIf="precoDesc.errors.maxValue">O preço com desconto não pode ser maior que o normal</span>
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <div class="campos">
                 <mat-form-field appearance="outline">
                     <mat-label>Loja</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let loja of lojas" [value]="loja.id" [(ngModel)]="oferta.loja">{{loja.nome}}</mat-option>
+                    <mat-select name="loja" required #loja="ngModel" [(ngModel)]="oferta.loja">
+                        <mat-option *ngFor="let loja of lojas" [value]="loja.id" [name]="'loja' + loja.id">{{loja.nome}}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="loja.invalid">
+                        <span *ngIf="loja.errors.required">Insíra a loja</span>
+                    </mat-error>
                 </mat-form-field>
             </div>
 
@@ -45,13 +65,14 @@
             <div class="campos">
                 <mat-form-field appearance="outline">
                     <mat-label>Descrição</mat-label>
-                    <input matInput placeholder="Descrição" [(ngModel)]="oferta.descricao">
+                    <input name="descricao" matInput placeholder="Descrição" [(ngModel)]="oferta.descricao">
                 </mat-form-field>
             </div>
 
-        </div>
         <div class="campos">
-            <button mat-raised-button color="primary" (click)="persistirOferta()">Salvar</button>
+            <button mat-raised-button color="primary">Salvar</button>
         </div>
+
+        </form>
     </div>
 </section>
